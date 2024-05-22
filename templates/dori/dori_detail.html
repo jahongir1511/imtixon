@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {{ dori.title }}{% endblock %}</title>
+</head>
+{% block content %}
+<body>
+<h1>Name: {{ dori.title }}</h1>
+<img src="{{ dori.image.url }}" height="200px"> <br><br>
+<h4>Description: {{ dori.description }}</h4>
+<h4>Price: {{ dori.price }}</h4>
+<h4>Pages: {{ dori.page }}</h4>
+</body>
+<a href="{% url 'products:book-delete' dori.pk %}" >Delete</a>
+<h2>Reviews</h2>
+<a href="{% url 'products:add-review' dori.pk %}" >Add Review</a>
+{% for review in reviews %}
+    <h4>{{ review.user.username }} | {{ review.star_given }}</h4>
+     {% if request.user == review.user %}
+        <a href="{% url 'products:edit-review' review.pk %}" >Update</a>
+        <a href="#" >Delete</a>
+    {% endif %}
+    <p>{{ review.comment }}</p><hr>
+
+{% endfor %}
+
+
+<hr><hr>
+
+{% for book in category_dorilar %}
+    <div style="display:flex">
+            <img src="{{ dori.image.url }}" height="80px">
+
+            {{ dori.title }}
+
+    </div>
+{% endfor %}
+
+{% endblock content%}

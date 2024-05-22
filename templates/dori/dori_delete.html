@@ -1,0 +1,6 @@
+<form method="post">
+    {% csrf_token %}
+    <p>“{{ object }}”ni o'chirishga ishonchingiz komilmi?</p>
+    <input type="submit" value="Tasdiqlash">
+</form>
+<a href="{% url 'products:dori-detail' object.pk %}">Yo'q</a>

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+<title>{% block title %} Dorilar {% endblock %}</title>
+
+{% block content %}
+<body>
+<h1>Dorilar</h1>
+<a href="{% url 'products:create-dori'%}">Add Dorilar</a> <br><br><hr>
+
+{% for b in dori %}
+    <a href="{% url 'products:dori-detail' b.pk %}">{{ b.title }}</a> <br><br>
+{% endfor %}
+</body>
+{% endblock content %}
+
+
